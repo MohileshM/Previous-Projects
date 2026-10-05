@@ -1,0 +1,116 @@
+// Creating collections
+db.createCollection("users");
+db.createCollection("codekata");
+db.createCollection("attendance");
+db.createCollection("topics");
+db.createCollection("tasks");
+db.createCollection("company_drives");
+db.createCollection("mentors");
+
+// Example: Inserting a document into the 'users' collection
+db.users.insertOne({
+  name: "mike",
+  email: "mike@example.com",
+  role: "student",
+  tasksCompleted: ["taskID1", "taskID2"],
+  attendance: ["attendanceID1", "attendanceID2"]
+});
+
+// Insert documents into other collections following their respective structures and fields.
+// Inserting a document into the 'codekata' collection
+db.codekata.insertOne({
+  userId: "userID123",
+  problemsSolved: 10
+});
+
+// Inserting a document into the 'attendance' collection
+db.attendance.insertOne({
+  userId: "userID123",
+  date: new Date("2023-10-20"),
+  present: true
+});
+
+// Inserting a document into the 'topics' collection
+db.topics.insertOne({
+  topicName: "MongoDB",
+  month: "October",
+  taskIds: ["taskID3", "taskID4"]
+});
+
+// Inserting a document into the 'tasks' collection
+db.tasks.insertOne({
+  taskId: "taskID3",
+  taskName: "Data Modeling",
+  month: "October",
+  submissionDate: new Date("2023-10-25")
+});
+
+// Inserting a document into the 'company_drives' collection
+db.company_drives.insertOne({
+  driveName: "TechFest",
+  date: new Date("2023-10-28")
+});
+
+// Inserting a document into the 'mentors' collection
+db.mentors.insertOne({
+  name: "Mentor Name",
+  menteesCount: 20,
+  menteeIds: ["userID123", "userID456"]
+});
+
+
+// 1. Find all the topics and tasks taught in the month of October
+db.topics.find({ month: "October" });
+db.tasks.find({ month: "October" });
+
+// 2. Find all the company drives that appeared between 15-Oct-2020 and 31-Oct-2020
+db.company_drives.find({ date: { $gte: ISODate("2020-10-15"), $lte: ISODate("2020-10-31") });
+
+// 3. Find all the company drives and students who are appeared for the placement.
+db.company_drives.aggregate([
+    { $lookup: {
+        from: "placements",
+        localField: "_id",
+        foreignField: "driveId",
+        as: "students"
+    }},
+    { $unwind: "$students" },
+    { $project: {
+        driveName: 1,
+        date: 1,
+        studentId: "$students.studentId"
+    }}
+]);
+
+// 4. Find the number of problems solved by the user in codekata
+db.codekata.aggregate([
+  {
+    $group: {
+      _id: "$userId",
+      totalProblemsSolved: { $sum: "$problemsSolved" }
+    }
+  }
+]);
+
+// 5. Find all the mentors with more than 15 mentees
+db.mentors.find({ menteesCount: { $gt: 15 } });
+
+// 6. Find the number of users who are absent and task is not submitted  between 15 oct-2020 and 31-oct-2020
+db.users.aggregate([
+    { $match: {
+        role: "student",
+        tasksCompleted: { $not: { $in: ["taskID3", "taskID4"] } }  // Assuming taskID3 and taskID4 are October tasks
+    }},
+    { $lookup: {
+        from: "attendance",
+        localField: "_id",
+        foreignField: "userId",
+        as: "attendance"
+    }},
+    { $unwind: "$attendance" },
+    { $match: {
+        "attendance.date": { $gte: ISODate("2023-10-15"), $lte: ISODate("2023-10-31") },
+        "attendance.present": false
+    }},
+    { $count: "absentUsers" }
+]);
