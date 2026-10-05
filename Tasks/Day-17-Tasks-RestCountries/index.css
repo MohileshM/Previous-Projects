@@ -1,0 +1,23 @@
+#parent{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: rgb(156, 143, 143) ;
+}
+#child{
+  display: flex;
+  flex-direction: column;
+  background-color:rgba(0, 251, 138, 0.132);
+  padding: 20px;
+  margin: 20px;
+}
+
+#flag{
+  height: 200px;
+  width: 300px;
+}
+
+#country,#capital,#region,#cioc{
+  text-align: center;
+}
