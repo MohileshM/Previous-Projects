@@ -1,0 +1,63 @@
+// 1.compare 2 json object
+     <script>
+           let obj1 ={
+            name:"person",
+            a:5
+           };
+           let obj2 ={
+            a:5,
+            name:"person"
+           };
+           var compare=true;
+
+if(Object.keys(obj1).length==Object.keys(obj2).length){
+    for(key in obj1) { 
+        if(obj1[key] == obj2[key]) {
+            continue;
+        }
+        else {
+            compare=false;
+            break;
+        }
+    }
+}
+else {
+   compare=false;
+}
+console.log("The object equal"  +  compare);
+</script>
+ 
+ 
+ 
+// 2. Displaying all the flags in the console
+     <script>
+      var request= new XMLHttpRequest()
+     request.open('Get','https://restcountries.com/v3.1/all')
+     request.send()
+     request.onload=function(){
+
+       var data = JSON.parse(request.response)
+      
+       for(i=0;i<data.length;i++){
+        console.log(data[i].flags.png)
+       }
+     }
+    </script>
+    
+    
+// 3. Printing all countries names,region,population,subregion
+ 
+  <script>
+            var request= new XMLHttpRequest()
+     request.open('Get','https://restcountries.com/v3.1/all')
+     request.send()
+     request.onload=function(){
+       var data = JSON.parse(request.response)           
+      for(i=0;i<data.length;i++){
+       console.log(data[i].name.common)
+       console.log(data[i].population)
+       console.log(data[i].region)
+       console.log(data[i].subregion)
+      }
+     }
+</script>
