@@ -1,0 +1,81 @@
+// A) Get all the countries from the Asia continent /region using the Filter function
+
+
+var request=new XMLHttpRequest();
+request.open('GET','https://restcountries.com/v3.1/all','true');
+request.send();
+request.onload=function(){
+    var country=JSON.parse(this.response);
+    const asia=country.filter((element)=>{
+        if(element.region==='Asia'){
+            return element.name;
+        }
+    })
+    console.log(asia);}
+
+
+
+// B) Get all the countries with a population of less than 2 lakhs using Filter function
+
+
+
+var request=new XMLHttpRequest();
+request.open('GET','https://restcountries.com/v3.1/all','true');
+request.send();
+request.onload=function (){
+    var country=JSON.parse(this.response);
+    const pop=country.filter((element)=>{
+        return element.population<200000;
+    })
+    console.log(pop);}
+
+
+
+// C)  Print the following details name, capital, flag using forEach function
+
+
+
+var request=new XMLHttpRequest();
+request.open('GET','https://restcountries.com/v3.1/all','true');
+request.send();
+request.onload=function (){
+    var country=JSON.parse(this.response);
+    country.forEach((element)=>{
+        console.log(element.name,element.capital,element.flag);
+    })}
+
+
+
+// D)  Print the total population of countries using reduce function
+
+
+
+var request=new XMLHttpRequest();
+request.open('GET','https://restcountries.com/v3.1/all','true');
+request.send();
+request.onload=function (){
+    var country=JSON.parse(this.response);
+    const population=country.reduce((acc,element)=>{
+        return acc+element.population;
+    },0)
+    console.log(population);}
+
+
+
+// E)  Print the country which uses US Dollars as currency.
+
+
+
+var request = new XMLHttpRequest();
+request.open('Get', 'https://restcountries.com/v3.1/all', true)
+request.send();
+request.onload = function () {
+        var data = JSON.parse(this.response);
+        var cur=[];
+        for(i=0;i<data.length;i++){
+            if(data[i].currencies.USD)
+            {
+                console.log("name:",data[i].name,"==>",data[i].currencies.USD)
+            }
+        }
+    }

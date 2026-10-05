@@ -1,0 +1,93 @@
+1.JSON iterate over all the loops
+
+FOR:
+var arr = [ 1, 2, 3, 4, 5] 
+for (var i=0; i < arr.length; i++) {
+   console.log(arr[i])
+}
+
+FOR IN :
+var person = {
+   name: "Mohi",
+   age: 22
+}; 
+for (var key in person) {
+   console.log(key + ": "+ person[key])
+}
+
+FOR EACH:
+var color = ["red", "blue", "white"];
+color.forEach(clr);
+function clr(table, paper) {
+   console.log(paper :: table);
+}
+
+
+2.RESUME DATA USING JSON
+ {
+            "name":"Mohilesh",
+            "header":
+            [
+                {
+                    "title":"Date of birth",
+                    "content":"28.8.2000"
+                },
+                {
+                    "title":"Contact no",
+                    "content":"9791941395"
+                },
+                {
+                    "title":"Email address",
+                    "content":"mohilesh.hsr@gmail.com"
+                },
+                {
+                   "title":"Address",
+                    "content":"Dr no 10 ,plotno 42, 4th crossroad,kumaran nagar ,hosur"
+                },
+
+            ],
+            "content":[
+            {
+                   "title":"projects",
+                    "content":[
+                               "prediction of wind speed and direction",
+                               "image steganography"
+            ]          
+                },
+
+                {
+                   "title":"Education",
+                    "content":[
+                            "Sri ramakrishna institute of technology",
+                            "BE computer science",
+                            "2022"
+                        },
+
+                {
+                   "title":"languages known",
+                    "content":"javascript,HTML,CSS,node.js"
+                },
+                {
+                   "title":"Key strength",
+                    "content":"Teamwork,timemanagement"
+                },
+            ]
+        },
+        
+        
+  3.Window,Screen,document
+  
+   window:
+     1.it is the execution context and global object for that context JavaScript
+     2.setTimeout() and setInterval() are binding event handlers to a time
+     3.location giving the current URL
+     
+   Screen:
+     1.screen describes the physical display's full screen
+     2.screen properties width and height are the full screen
+     3.screen is the screen, it contains properties about the user's display
+   
+   Document:
+     1.document contains the DOM, initialized by parsing HTML
+     2.document.getElementById("anything")
+     3.document is where the DOM is

@@ -1,0 +1,173 @@
+1.class Movie 
+
+
+  a. class Movie{  
+            
+            constructor(title,studio,rating){
+                this.title=title;
+                this.studio=studio;
+                 this.rating=rating
+            }
+        }
+        var film=new Movie("Casino royale","Eon production","PG13")
+        console.log(film)
+       
+   b.
+      class Movie{
+        constructor(title,studio,rating){
+                  this.title=title;
+                  this.stduio=studio;
+                  if(rating==null||rating ==undefined){
+                    return this.rating="PG"
+                }else{
+                    return this.rating=rating
+                }
+        }
+      }
+       var film1=new Movie("casino royale","Eon production","PG13")
+       console.log(film1)
+           
+       var film2=new Movie("XYZ Royale","XYZ Productions")
+        console.log(film2)
+
+        var film3=new Movie("ABC Royale","ABC Productions","PG20")
+        console.log(film3)
+
+   c.
+      class Movie{          
+            getPG(array){
+                console.log(array)
+                
+                let result=[]
+                for(var i=0;i<array.length;i++){
+                    if(array[i].rating=="PG"){
+                        console.log("return the film")
+                        result.push(array[i])
+                    }              
+            }
+            return result                 
+            }
+        }  
+        var film1=new Movie("Casino Royale","Eon Productions","PG13")
+        console.log(film1)
+        var film2=new Movie("XYZ Royale","XYZ Productions")
+        console.log(film2)
+        var film3=new Movie("ABC Royale","ABC Productions","PG20")
+        console.log(film3)
+        var film4=new Movie("PAR Royale","PAR Productions")
+        console.log(film4)
+        var film5=new Movie("AFR Royale","AFR Productions")
+        console.log(film5)
+        console.log([film1,film2,film3,film4,film5])      
+        let array=[film1,film2,film3,film4,film5]
+        console.log(film2.getPG(array))
+     
+  
+  
+   d.
+     class Movie{
+        constructor(title,studio,rating){
+                  this.title=title,
+                  this.stduio=studio,
+                  this.rating=rating 
+        }
+       }
+       var film=new Movie("casino royale","Eon production","PG13")
+       console.log(film)
+
+
+2. Class circle
+
+       <script>
+ var Circle = (function () {
+    function Circle(radius, color) {
+        this.radius = 1.0;
+        this.color = "Red";
+        if (typeof (radius) !== "undefined") {
+            this.radius = radius;
+        }
+        if (typeof (color) !== "undefined") {
+            this.color = color;
+        }
+    }
+    Circle.prototype.getRadius = function () {
+        return this.radius;
+    };
+    Circle.prototype.setRadius = function (radius) {
+        this.radius = radius;
+    };
+    Circle.prototype.getColor = function () {
+        return this.color;
+    };
+    Circle.prototype.setColor = function (color) {
+        this.color = color;
+    };
+    Circle.prototype.toString = function () {
+        return "Radius: " + this.radius + " Color: " + this.color;
+    };
+    Circle.prototype.getArea = function () {
+        return (2 * (Math.PI) * this.radius);
+    };
+    Circle.prototype.getCircumference = function () {
+        return (2 * this.radius);
+    };
+    return Circle;
+}());
+var c1 = new Circle();
+console.log("Constructor with no params: " + c1.toString());
+var c2 = new Circle(3.5);
+console.log("Constructor with one param: " + c2.toString());
+var c3 = new Circle(2.2, 'Yellow');
+console.log("getRadius: " + c3.getRadius());
+c3.setRadius(3.3);
+console.log("Radius value after setRadius: " + c3.getRadius());
+console.log("getColor: " + c3.getColor());
+c3.setColor("Blue");
+console.log("Color Value after setColor: " + c3.getColor());
+console.log(c3.toString());
+console.log("Area: " + c3.getArea());
+console.log("Circumference: " + c3.getCircumference());
+    </script>
+
+
+   
+3 . Person class holds all the details
+   
+       function Person() {
+    this.firstName = "unknown";
+    this.lastName = "unknown";
+}
+
+var person1 = new Person();
+person1.firstName = "arun";
+person1.lastName = "kumar";
+            
+
+console.log(person1.firstName + " " + person1.lastName)
+
+var person2 = new Person();
+person2.firstName = "vijay";
+person2.lastName = "kumar";
+            
+console.log(person2.firstName + " " + person2.lastName)
+
+
+4. write a class to calculate the uber price
+
+ class Uber
+    {
+    constructor(base,startingpoint,endingpoint)
+    {
+        this.a = base
+        this.b = startingpoint
+        this.c = endingpoint
+    }
+    
+    fare()
+    {
+        return ((this.c-this.b)*this.a)
+    }    
+}
+
+var obj = new Uber(9,0,2)
+console.log("The fare for travelling in uber is Rs:",obj.fare())
