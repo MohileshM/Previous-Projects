@@ -1,0 +1,1 @@
+export const API = "https://attendance-portal-server.onrender.com";
